@@ -12,7 +12,7 @@ export class ProductServiceService {
    
   }
 
-  url="../assets/products.json";
+  url="https://random-data-api.com/api/coffee/random_coffee?size=50";
   product():Observable<any>{
     return this.http.get(this.url);
   }

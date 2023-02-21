@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators, FormBuilder } from '@angular/forms';
 import { Router } from '@angular/router';
+import { AuthService } from 'src/services/auth/auth.service';
 
 @Component({
   selector: 'app-login',
@@ -12,12 +13,16 @@ export class LoginComponent implements OnInit {
   loginForm!: FormGroup;
   submitted = false;
 
-  constructor(private formBuilder: FormBuilder, private _route: Router) { }
+  constructor(
+    private formBuilder: FormBuilder,
+    private _route: Router,
+    private _authService : AuthService
+  ) { }
 
   ngOnInit(): void {
     this.loginForm = this.formBuilder.group({
-      email: ['user@gmail.com', [Validators.required, Validators.email]],
-      password: ['User@123', [Validators.required, Validators.minLength(6)]]
+      email: ['', [Validators.required]],
+      password: ['', [Validators.required]]
     });
   }
 
@@ -26,18 +31,15 @@ export class LoginComponent implements OnInit {
 
   onSubmit() {
     this.submitted = true;
-
-    if (
-      this.loginForm.valid &&
-      this.loginForm.value.email == 'user@gmail.com' &&
-      this.loginForm.value.password == 'User@123'
-    ) {
+    
+    
+    if (this.loginForm.valid) {
+      this._authService.setUser(this.loginForm.value.email);
       this._route.navigate(['/product']);
     } else {
       alert('Invalid Credential');
       return;
     }
-    
   }
 
 }
