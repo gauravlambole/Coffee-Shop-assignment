@@ -7,13 +7,25 @@ import { Observable } from 'rxjs';
 })
 export class ProductServiceService {
 
-  constructor(private http:HttpClient) { 
+  constructor(private http: HttpClient) {
 
-   
+
   }
 
-  url="https://random-data-api.com/api/coffee/random_coffee?size=50";
-  product():Observable<any>{
+  url = "https://random-data-api.com/api/coffee/random_coffee?size=50";
+  product(): Observable<any> {
     return this.http.get(this.url);
+  }
+
+  addToCart(data: any) {
+    let arr = this.getCartList();
+    
+    arr.push(data)
+    localStorage.setItem("cart", JSON.stringify(arr));
+  }
+
+  getCartList() {
+    let str =  localStorage.getItem("cart");   
+    return str ? JSON.parse("" + str + "") : [];
   }
 }

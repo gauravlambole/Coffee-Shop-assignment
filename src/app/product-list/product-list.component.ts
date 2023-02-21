@@ -13,6 +13,7 @@ export class ProductListComponent implements OnInit {
     products:any = [];
     userDetails : any;
     p:any;
+    productList:any;
 
     constructor(
         private _route: Router,
@@ -23,6 +24,7 @@ export class ProductListComponent implements OnInit {
     ngOnInit(): void {
         this.getProductlist();
         this.getUserDetails();
+        this.getCartList();
     }
 
     getUserDetails() {
@@ -37,11 +39,21 @@ export class ProductListComponent implements OnInit {
     getProductlist() {
         this.prodservice.product().subscribe(Response => {
             this.products = Response;
-            console.log(this.products);
+            // console.log(this.products);
         }, error => {
             // console.log("Error---->", error);
 
         })
+    }
+
+
+    addToCart(product : any) {
+        this.prodservice.addToCart(product)
+    }
+
+    getCartList() {
+        this.productList = this.prodservice.getCartList();
+        console.log(this.productList);
     }
 
 }
