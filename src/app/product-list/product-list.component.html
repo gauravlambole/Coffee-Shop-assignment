@@ -47,10 +47,6 @@
                                 <a class="dropdown-item" (click)="onLogout()">Logout</a>
                             </div>
                         </li>
-
-
-
-
                     </ul>
                 </div>
             </div>
@@ -62,7 +58,18 @@
 
 <div class="container">
     <div class="row mt-3">
-        <div class="col-3" *ngFor="let product of products">
+        <div class="list">
+            <!-- <ul>
+                <li *ngFor="let item of products | paginate: { itemsPerPage: 10, currentPage: p }">{{ item }}</li>
+            </ul> -->
+    
+           
+    </div>
+
+        <div class="col-3" *ngFor="let product of products | paginate: { itemsPerPage: 8, currentPage: p }">
+            <!-- <li *ngFor="let item of products | paginate: { itemsPerPage: 10, currentPage: p }">{{ item }}</li>
+            <pagination-controls (pageChange)="p = $event"></pagination-controls> -->
+
             <div class="card mb-3" >
                 <h5 class="card-header text-center">{{product.blend_name}}</h5>
 
@@ -85,6 +92,7 @@
             </div>
 
         </div>
+        <pagination-controls (pageChange)="p = $event" class="d-flex content-align-right"></pagination-controls>
         <!-- <div class="col-3">
             <div class="card mb-3">
                 <h3 class="card-header text-center">Cold coffee</h3>

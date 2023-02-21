@@ -12,6 +12,7 @@ export class ProductListComponent implements OnInit {
 
     products:any = [];
     userDetails : any;
+    p:any;
 
     constructor(
         private _route: Router,
