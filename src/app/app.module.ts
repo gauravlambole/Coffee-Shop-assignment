@@ -8,12 +8,18 @@ import { LoginComponent } from './login/login.component';
 import { ProductListComponent } from './product-list/product-list.component';
 import { HttpClientModule } from '@angular/common/http';
 import { NgxPaginationModule } from 'ngx-pagination';
+import { HeaderComponent } from './header/header.component';
+import { ProductDetailsComponent } from './product-details/product-details.component';
+import { MyCartComponent } from './my-cart/my-cart.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     LoginComponent,
-    ProductListComponent
+    ProductListComponent,
+    HeaderComponent,
+    ProductDetailsComponent,
+    MyCartComponent
   ],
   imports: [
     BrowserModule,

@@ -17,7 +17,10 @@ export class LoginComponent implements OnInit {
     private formBuilder: FormBuilder,
     private _route: Router,
     private _authService : AuthService
-  ) { }
+  ) { 
+    
+    if(this._authService.getUser()) { this._route.navigate(['product']) }
+  }
 
   ngOnInit(): void {
     this.loginForm = this.formBuilder.group({

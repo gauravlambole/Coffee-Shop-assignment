@@ -39,7 +39,7 @@ export class ProductListComponent implements OnInit {
     getProductlist() {
         this.prodservice.product().subscribe(Response => {
             this.products = Response;
-            // console.log(this.products);
+            console.log(this.products);
         }, error => {
             // console.log("Error---->", error);
 
@@ -54,6 +54,12 @@ export class ProductListComponent implements OnInit {
     getCartList() {
         this.productList = this.prodservice.getCartList();
         console.log(this.productList);
+    }
+
+
+    redirectToDetailsPage(product : any) {
+
+        // this._route.navigate(['product/product-detail/' + product.id])
     }
 
 }
